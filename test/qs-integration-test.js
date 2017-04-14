@@ -95,3 +95,49 @@ describe('Qlik Sense session auth test', () => {
     });
   });
 });
+
+describe('Illegal configuration', () => {
+  afterEach((done) => {
+    qps = null;
+    done();
+  });
+
+  it('should fail when host is not reachable.', (done) => {
+    const illegalOptions = {
+      host: 'qs03.mydomain.com',
+      port: 4243,
+      prefix: '/portal',
+      xrfkey: 'abcdefghijklmnop',
+      pfx: 'C:\\Cert\\client.pfx',
+      passphrase: '',
+      isSecure: true,
+    };
+    qps = new QlikSession(illegalOptions, profile);
+
+    qps.getSession().then(() => {
+      done('Passed the fail test.');
+    },
+    (e) => {
+      expect(JSON.stringify(e)).to.include('{"code":"ENOTFOUND","errno":"ENOTFOUND"');
+      done();
+    });
+  });
+
+  it('should fail when cannot read pfx.', (done) => {
+    const illegalOptions = {
+      host: 'qs02.mydomain.com',
+      port: 4243,
+      prefix: '/portal',
+      xrfkey: 'abcdefghijklmnop',
+      pfx: 'C:\\Cert\\not_found.pfx',
+      passphrase: '',
+      isSecure: true,
+    };
+    try {
+      qps = new QlikSession(illegalOptions, profile);
+    } catch (e) {
+      expect(JSON.stringify(e)).to.include('{"errno":-4058,"code":"ENOENT","syscall":"open",');
+      done();
+    }
+  });
+});
