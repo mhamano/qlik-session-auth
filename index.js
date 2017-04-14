@@ -45,7 +45,7 @@ module.exports = class QlikSession {
     this.isSecure = options.isSecure || 'true';
   }
 
-  formatPrefix(prefix) {
+  static formatPrefix(prefix) {
     let _prefix = prefix;
     if (_prefix == null || _prefix === '' || _prefix === undefined) {
       return '';
@@ -59,7 +59,7 @@ module.exports = class QlikSession {
     return _prefix;
   }
 
-  isStringValidJsonFormat(str) {
+  static isStringValidJsonFormat(str) {
     const reg = new RegExp(/^{.*"UserDirectory":.*"UserId":.*"Attributes":.*"SessionId":.*}$/);
     return reg.test(str);
   }
