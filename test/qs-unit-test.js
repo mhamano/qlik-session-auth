@@ -112,9 +112,6 @@ describe('Class instantiation', () => {
     expect(qps.isSecure).to.be.equal(options.isSecure);
     done();
   });
-  it('should ', (done) => {
-    done();
-  });
 });
 
 describe('formatPrefix', () => {
@@ -127,12 +124,12 @@ describe('formatPrefix', () => {
     done();
   });
   it('should return true', (done) => {
-    const res = qps.formatPrefix('portal');
+    const res = QlikSession.formatPrefix('portal');
     expect(res).to.be.equal('/portal');
     done();
   });
   it('should return false', (done) => {
-    const res = qps.formatPrefix('/portal/');
+    const res = QlikSession.formatPrefix('/portal/');
     expect(res).to.be.equal('/portal');
     done();
   });
@@ -151,12 +148,12 @@ describe('isStringValidJsonFormat', () => {
     done();
   });
   it('should return true', (done) => {
-    const res = qps.isStringValidJsonFormat(validJsonFormat);
+    const res = QlikSession.isStringValidJsonFormat(validJsonFormat);
     expect(res).to.be.true;
     done();
   });
   it('should return false', (done) => {
-    const res = qps.isStringValidJsonFormat(invalidJsonFormat);
+    const res = QlikSession.isStringValidJsonFormat(invalidJsonFormat);
     expect(res).to.be.false;
     done();
   });
@@ -197,7 +194,7 @@ describe('getSession', () => {
     sandbox.restore();
     done();
   });
-  it('should ', (done) => {
+  it('should call sendRequest with valid parameters.', (done) => {
     const qpsMock = sandbox.mock(qps).expects('sendRequest').withArgs('GET', qps.path.get);
     qps.getSession();
     qpsMock.verify();
@@ -216,7 +213,7 @@ describe('addSession', () => {
     sandbox.restore();
     done();
   });
-  it('should ', (done) => {
+  it('should call sendRequest with valid parameters.', (done) => {
     const qpsMock = sandbox.mock(qps).expects('sendRequest').withArgs('POST', qps.path.add);
     qps.addSession();
     qpsMock.verify();
@@ -235,7 +232,7 @@ describe('deleteSession', () => {
     sandbox.restore();
     done();
   });
-  it('should ', (done) => {
+  it('should call sendRequest with valid parameters.', (done) => {
     const qpsMock = sandbox.mock(qps).expects('sendRequest').withArgs('DELETE', qps.path.delete);
     qps.deleteSession();
     qpsMock.verify();
