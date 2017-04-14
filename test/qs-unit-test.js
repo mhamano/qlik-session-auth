@@ -52,6 +52,13 @@ describe('Class instantiation', () => {
     options.prefix = '/portal';
     done();
   });
+  it('should add leading / and remove trailing / of prefix.', (done) => {
+    options.prefix = 'portal/';
+    qps = new QlikSession(options, profile);
+    expect(qps.path.get.substring(0, 20)).to.be.equal('/qps/portal/session/');
+    options.prefix = '/portal';
+    done();
+  });
   it('should set default values when option items are missing.', (done) => {
     const emptyOptions = {};
     qps = new QlikSession(emptyOptions, profile);
