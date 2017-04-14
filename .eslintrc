@@ -1,5 +1,10 @@
 {
   "extends": "airbnb-base",
+    "rules": {
+    linebreak-style: ["error", "windows"],
+    import/no-extraneous-dependencies: ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": true}],
+    no-underscore-dangle: ["error", { "allow": ["_pfx", "_prefix"] }]
+  },
   "globals": {
     "describe"   : false,
     "it"         : false,
