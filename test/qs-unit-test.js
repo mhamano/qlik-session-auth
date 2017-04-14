@@ -39,10 +39,10 @@ describe('Class instantiation', () => {
     done();
   });
   it('should add / when prefix has no leading /.', (done) => {
-    const modOptions = options;
-    modOptions.prefix = 'portal';
-    qps = new QlikSession(modOptions, profile);
+    options.prefix = 'portal';
+    qps = new QlikSession(options, profile);
     expect(qps.path.get.substring(0, 20)).to.be.equal('/qps/portal/session/');
+    options.prefix = '/portal';
     done();
   });
   it('should remove trailing / of prefix.', (done) => {
@@ -89,6 +89,42 @@ describe('Class instantiation', () => {
       qps = new QlikSession(options, emptyProfile);
     } catch (e) {
       expect(e.toString()).to.be.equal('Error: profile.userDirectory is missing.');
+    }
+    done();
+  });
+  it('should return error when profile.userDirectory are missing.', (done) => {
+    const incompleteProfile = {
+      userId: 'john_doe',
+      sessionId: uuid.v4(), // e.g. 32a4fbed-676d-47f9-a321-cb2f267e2918
+    };
+    try {
+      qps = new QlikSession(options, incompleteProfile);
+    } catch (e) {
+      expect(e.toString()).to.be.equal('Error: profile.userDirectory is missing.');
+    }
+    done();
+  });
+  it('should return error when profile.userId are missing.', (done) => {
+    const incompleteProfile = {
+      userDirectory: 'portal',
+      sessionId: uuid.v4(), // e.g. 32a4fbed-676d-47f9-a321-cb2f267e2918
+    };
+    try {
+      qps = new QlikSession(options, incompleteProfile);
+    } catch (e) {
+      expect(e.toString()).to.be.equal('Error: profile.userId is missing.');
+    }
+    done();
+  });
+  it('should return error when profile.sessionId are missing.', (done) => {
+    const incompleteProfile = {
+      userDirectory: 'portal',
+      userId: 'john_doe',
+    };
+    try {
+      qps = new QlikSession(options, incompleteProfile);
+    } catch (e) {
+      expect(e.toString()).to.be.equal('Error: profile.sessionId is missing.');
     }
     done();
   });
