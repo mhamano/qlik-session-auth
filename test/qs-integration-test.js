@@ -23,7 +23,7 @@ const profile = {
 
 let qps = null;
 
-describe('Qlik Sense session auth test', () => {
+describe('Qlik Sense session auth fail test', () => {
   beforeEach((done) => {
     qps = new QlikSession(options, profile);
     done();
@@ -46,6 +46,52 @@ describe('Qlik Sense session auth test', () => {
     (res) => {
       expect(res).to.include('No session with id');
       done();
+    });
+  });
+});
+
+describe('Qlik Sense session auth test', () => {
+  before((done) => {
+    qps = new QlikSession(options, profile);
+    done();
+  });
+
+  after((done) => {
+    qps = null;
+    done();
+  });
+
+  it('should add session id.', (done) => {
+    qps.addSession().then((res) => {
+      expect(res.UserDirectory.toUpperCase()).to.be.equal(profile.userDirectory.toUpperCase());
+      expect(res.UserId.toUpperCase()).to.be.equal(profile.userId.toUpperCase());
+      done();
+    },
+    (err) => {
+      done(err);
+    });
+  });
+
+  it('should get session.', (done) => {
+    qps.getSession().then((res) => {
+      expect(res.UserDirectory.toUpperCase()).to.be.equal(profile.userDirectory.toUpperCase());
+      expect(res.UserId.toUpperCase()).to.be.equal(profile.userId.toUpperCase());
+      done();
+    },
+    (err) => {
+      done(err);
+    });
+  });
+
+  it('should delete session.', (done) => {
+    qps.deleteSession().then((res) => {
+      expect(res.Session.UserDirectory.toUpperCase())
+        .to.be.equal(profile.userDirectory.toUpperCase());
+      expect(res.Session.UserId.toUpperCase()).to.be.equal(profile.userId.toUpperCase());
+      done();
+    },
+    (err) => {
+      done(err);
     });
   });
 });
