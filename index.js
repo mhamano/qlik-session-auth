@@ -23,7 +23,7 @@ module.exports = class QlikSession {
     } else if (profile.userId == null || profile.userId === undefined) {
       throw new Error('profile.userId is missing.');
     } else if (profile.sessionId == null || profile.sessionId === undefined) {
-      throw new Error('profile.userId is missing.');
+      throw new Error('profile.sessionId is missing.');
     }
 
     this.options = {
