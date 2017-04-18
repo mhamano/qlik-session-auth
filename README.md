@@ -1,4 +1,4 @@
-# qlik-session-auth
+# qlik-session-auth [![Build Status](https://travis-ci.org/mhamano/qlik-session-auth.svg?branch=master)](https://travis-ci.org/mhamano/qlik-session-auth)
 Qlik Sense Session API authentication module for Node.js.
 
 # Prerequisite
