@@ -10,7 +10,7 @@ const options = {
   port: 4243,
   prefix: '/portal',
   xrfkey: 'abcdefghijklmnop',
-  pfx: 'C:\\Cert\\client.pfx',
+  pfx: './test/client.pfx',
   passphrase: '',
   isSecure: true,
 };
