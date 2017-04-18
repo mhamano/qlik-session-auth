@@ -72,7 +72,7 @@ describe('Class instantiation', () => {
     try {
       qps = new QlikSession(options, profile);
     } catch (e) {
-      expect(JSON.stringify(e)).to.include('{"code":"ENOENT","syscall":"open","path":"C:\\\\not_found.pfx"}');
+      expect(JSON.stringify(e)).to.include('"code":"ENOENT","syscall":"open","path":"C:\\\\not_found.pfx"');
     } finally {
       options.pfx = './test/client.pfx';
     }
