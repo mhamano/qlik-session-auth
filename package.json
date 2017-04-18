@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": ".\\node_modules\\.bin\\mocha -u bdd -R spec -t 10000 --require should --watch",
-    "unit-test": ".\\node_modules\\.bin\\mocha test\\qs-unit-test.js -u bdd -R spec -t 10000 --require should ",
+    "unit-test": ".\\node_modules\\.bin\\mocha test/qs-unit-test.js -u bdd -R spec -t 10000 --require should ",
     "cover": "istanbul cover node_modules\\mocha\\bin\\_mocha test\\qs-unit-test.js",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "cover-integ": "istanbul cover node_modules\\mocha\\bin\\_mocha"
