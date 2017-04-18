@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": ".\\node_modules\\.bin\\mocha -u bdd -R spec -t 10000 --require should --watch",
-    "coverage": "istanbul cover node_modules\\mocha\\bin\\_mocha"
+    "unit-test": ".\\node_modules\\.bin\\mocha test\\qs-unit-test.js -u bdd -R spec -t 10000 --require should ",
+    "cover": "istanbul cover node_modules\\mocha\\bin\\_mocha test\\qs-unit-test.js",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "cover-integ": "istanbul cover node_modules\\mocha\\bin\\_mocha"
   },
   "author": "Masaki Hamano",
   "license": "MIT",
@@ -16,11 +19,13 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.13.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.1.3",
     "eslint-plugin-import": "^2.2.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
     "node-uuid": "^1.4.8",
     "sinon": "^2.1.0",
     "supertest-session": "^3.0.0"
