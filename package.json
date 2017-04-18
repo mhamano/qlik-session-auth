@@ -1,7 +1,7 @@
 {
   "name": "qlik-session-auth",
   "version": "1.0.0",
-  "description": "Qlik Sense session API authentication module",
+  "description": "Qlik Sense Session API authentication module for Node.js",
   "main": "index.js",
   "scripts": {
     "test": ".\\node_modules\\.bin\\mocha -u bdd -R spec -t 10000 --require should --watch",
