@@ -54,7 +54,7 @@ Define config options for Qlik Sense Session API and profile of login user.
       sessionId: uuid.v4(), // e.g. 32a4fbed-676d-47f9-a321-cb2f267e2918
     };
 
-Initialize QlikSession instance with options and profile and execute addSession method.
+Initialize QlikSession instance with options and profile and call addSession method.
 
     var qps = new QlikSession(options, profile);
 
@@ -66,6 +66,11 @@ Initialize QlikSession instance with options and profile and execute addSession 
         console.log(err);
     });
 
+When you get or delete QlikSession, call the following methods.
+
+    qps.getSession().then(....)
+
+    qps.deleteSession().then(....)
 
 ## Qlik Sense
 * Open 4243 port for QPS API as well as 80/443 ports for user access.
