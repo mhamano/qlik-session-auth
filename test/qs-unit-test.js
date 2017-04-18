@@ -74,7 +74,7 @@ describe('Class instantiation', () => {
     } catch (e) {
       expect(JSON.stringify(e)).to.be.equal('{"errno":-4058,"code":"ENOENT","syscall":"open","path":"C:\\\\not_found.pfx"}');
     } finally {
-      options.pfx = 'C:\\Cert\\client.pfx';
+      options.pfx = './test/client.pfx';
     }
     done();
   });
